@@ -93,5 +93,7 @@ exitWithMessageOnError "dotnet publish failed"
 exitWithMessageOnError "Kudu Sync failed"
 
 
+exitWithMessageOnError "Testing error handler!!"
+
 ##################################################################################################################################
 echo "Finished successfully."
