@@ -84,15 +84,21 @@ echo Handling ASP.NET Core Web Application deployment.
 dotnet restore "api-test/api-test.csproj"
 exitWithMessageOnError "dotnet restore failed"
 
+echo AAAAAAAAAAAAAAAAAA
+
 # 2. Build and publish
 dotnet publish "api-test/api-test.csproj" --output "$DEPLOYMENT_TEMP" --configuration Release
 exitWithMessageOnError "dotnet publish failed"
+
+echo BBBBBBBBBBBBBBBBBB
 
 # 3. KuduSync
 "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_TEMP" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
 exitWithMessageOnError "Kudu Sync failed"
 
+echo CCCCCCCCCCCCCCCCC
 
+false
 exitWithMessageOnError "Testing error handler!!"
 
 ##################################################################################################################################
