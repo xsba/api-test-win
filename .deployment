@@ -1,3 +1,2 @@
 [config]
-project = api-test/api-test.csproj
 command = /home/site/repository/deploy.sh
