@@ -82,13 +82,19 @@ fi
 
 echo Handling ASP.NET Core Web Application deployment.
 
+echo "Restore"
+
 # 1. Restore nuget packages
 dotnet restore "api-test/api-test.csproj"
 exitWithMessageOnError "dotnet restore failed"
 
+echo "Publish"
+
 # 2. Build and publish
 dotnet publish "api-test/api-test.csproj" --output "$DEPLOYMENT_TEMP" --configuration Release
 exitWithMessageOnError "dotnet publish failed"
+
+echo "Sync"
 
 # 3. KuduSync
 "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_TEMP" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
