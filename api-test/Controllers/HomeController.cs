@@ -14,7 +14,7 @@ namespace api_test.Controllers
         public ActionResult<string> Index() 
         //public IActionResult Index()
         {
-            var pid = System.Diagnostics.Process.GetCurrentProcess().Id.ToString();
+            var pid = BL.Pid.Get();
             return $"PID:{pid}";
         }
     }
